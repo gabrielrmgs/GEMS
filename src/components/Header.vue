@@ -9,8 +9,8 @@
 
         <nav class="main-nav">
           <div class="nav-items">
-            <router-link to="/#about" class="nav-link">{{ translations.about }}</router-link>
-            <router-link to="/#equipe" class="nav-link">{{ translations.equipe }}</router-link>
+            <router-link to="/GEMS/" class="nav-link">{{ translations.about }}</router-link>
+            <router-link to="/GEMS/" class="nav-link">{{ translations.equipe }}</router-link>
             <div class="dropdown">
               <button class="dropbtn nav-link">{{ translations.certificates }}</button>
               <div class="dropdown-content">
@@ -20,8 +20,8 @@
                 <a href="#">Certificado de Boas Práticas (PDF)</a>
               </div>
             </div>
-            <router-link to="/cadastro" class="nav-link">{{ translations.register }}</router-link>
-            <router-link to="/atendimento" class="nav-link" >{{ translations.atendimento }}</router-link>
+            <router-link to="/GEMS/cadastro" class="nav-link">{{ translations.register }}</router-link>
+            <router-link to="/GEMS/atendimento" class="nav-link" >{{ translations.atendimento }}</router-link>
             <div class="dropdown">
               <button class="dropbtn nav-link">{{ translations.projetos }}</button>
               <div class="dropdown-content">

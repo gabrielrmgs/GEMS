@@ -11,12 +11,17 @@ const routes: Array<RouteRecordRaw> = [
     component: Principal
   },
   {
-    path: '/atendimento',
+    path: '/GEMS',
+    name: 'Home',
+    component: Principal
+  },
+  {
+    path: '/GEMS/atendimento',
     name: 'Atendimento',
     component: Atendimento
   },
   {
-    path: '/cadastro',
+    path: '/GEMS/cadastro',
     name: 'Cadastro',
     component: Cadastro
   }

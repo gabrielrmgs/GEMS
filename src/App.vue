@@ -16,21 +16,13 @@ import Footer from './components/Footer.vue'
 import BackToTop from './components/BackToTop.vue'
 
 const currentLanguage = ref('pt')
-const currentView = ref('home')
 
-const showRegistration = () => {
-  currentView.value = 'registration'
-}
-const showHome = () => {
-  currentView.value = 'home'
-}
+
 const changeLanguage = (lang: string) => {
   currentLanguage.value = lang
 }
 
 provide('currentLanguage', currentLanguage)
-provide('showRegistration', showRegistration)
-provide('showHome', showHome)
 </script>
 
 <style>
