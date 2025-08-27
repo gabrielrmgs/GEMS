@@ -131,7 +131,7 @@ const showSuccess = ref(false)
 const validateForm = () => {
   // Limpar erros
   Object.keys(errors).forEach(key => {
-    errors[key] = ''
+    errors[key as keyof typeof errors] = ''
   })
 
   let isValid = true
@@ -183,7 +183,7 @@ const submitForm = async () => {
     
     // Limpar formulário
     Object.keys(form).forEach(key => {
-      form[key] = ''
+      form[key as keyof typeof errors] = ''
     })
     
     // Mostrar sucesso
@@ -200,19 +200,10 @@ const submitForm = async () => {
 }
 
 // Máscara para telefone
-const formatPhone = (value: string) => {
-  const numbers = value.replace(/\D/g, '')
-  if (numbers.length <= 11) {
-    return numbers.replace(/(\d{2})(\d{4,5})(\d{4})/, '($1) $2-$3')
-  }
-  return value
-}
+
 
 // Aplicar máscara no telefone
-const handlePhoneInput = (event: Event) => {
-  const target = event.target as HTMLInputElement
-  form.telefone = formatPhone(target.value)
-}
+
 </script>
 
 <style scoped>

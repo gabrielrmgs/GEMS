@@ -39,7 +39,7 @@
         
         <div class="carousel-indicators">
           <button 
-            v-for="(image, index) in images" 
+            v-for="(_, index) in images" 
             :key="index"
             class="indicator"
             :class="{ active: currentSlide === index }"
