@@ -78,7 +78,7 @@
           </div>
         </div>
         <div class="footer-section">
-          <router-link to="/atendimento" class="contact-us-btn">
+          <router-link to="/GEMS/atendimento" class="contact-us-btn">
             {{ translations.contactUs }}
           </router-link>
         </div>

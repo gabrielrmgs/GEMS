@@ -25,7 +25,7 @@
             <div class="dropdown">
               <button class="dropbtn nav-link">{{ translations.projetos }}</button>
               <div class="dropdown-content">
-                <a href="#">Dengue</a>
+                <a href="http://mapa.gemsbiotec.com.br/BomJesus/">Dengue</a>
                 <a href="#">Covid</a>
                 <a href="#">Leishmania</a>
               </div>
