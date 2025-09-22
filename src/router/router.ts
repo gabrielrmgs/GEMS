@@ -2,6 +2,7 @@ import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
 import Atendimento from '../components/Atendimento.vue'
 import Principal from '../components/Home.vue'
 import Cadastro from '../components/Cadastro.vue'
+import Equipe from '../components/Equipe.vue'
 
 // 1. Defina suas rotas com o tipo RouteRecordRaw
 const routes: Array<RouteRecordRaw> = [
@@ -24,6 +25,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/GEMS/cadastro',
     name: 'Cadastro',
     component: Cadastro
+  },
+  {
+    path: '/GEMS/equipe',
+    name: 'Equipe',
+    component: Equipe
   }
 ]
 

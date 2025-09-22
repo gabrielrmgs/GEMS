@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header id="navegacao" class="header">
     <div class="container">
       <div class="header-content">
         <div class="logo">
@@ -10,7 +10,7 @@
         <nav class="main-nav">
           <div class="nav-items">
             <router-link to="/GEMS/" class="nav-link">{{ translations.about }}</router-link>
-            <router-link to="/GEMS/" class="nav-link">{{ translations.equipe }}</router-link>
+            <router-link to="/GEMS/equipe" class="nav-link">{{ translations.equipe }}</router-link>
             <div class="dropdown">
               <button class="dropbtn nav-link">{{ translations.certificates }}</button>
               <div class="dropdown-content">
