@@ -33,9 +33,9 @@
             <div class="dropdown">
               <button class="dropbtn nav-link">{{ translations.noticias }}</button>
               <div class="dropdown-content">
-                <a href="#">{{ translations.videos }}</a>
+                <router-link to="/GEMS/videos">{{ translations.videos }}</router-link>
                 <a href="#">{{ translations.conferencias }}</a>
-                <a href="#">{{ translations.artigos }}</a>
+                <router-link to="/GEMS/artigos">{{ translations.artigos }}</router-link>
               </div>
             </div>
           </div>

@@ -3,6 +3,8 @@ import Atendimento from '../components/Atendimento.vue'
 import Principal from '../components/Home.vue'
 import Cadastro from '../components/Cadastro.vue'
 import Equipe from '../components/Equipe.vue'
+import VideosPagina from '../components/VideosPagina.vue'
+import ArtigosPagina from '../components/ArtigosPagina.vue'
 
 // 1. Defina suas rotas com o tipo RouteRecordRaw
 const routes: Array<RouteRecordRaw> = [
@@ -30,6 +32,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/GEMS/equipe',
     name: 'Equipe',
     component: Equipe
+  },
+  {
+    path: '/GEMS/videos',
+    name: 'Videos',
+    component: VideosPagina
+  },
+  {
+    path: '/GEMS/artigos',
+    name: 'Artigos',
+    component: ArtigosPagina
   }
 ]
 
