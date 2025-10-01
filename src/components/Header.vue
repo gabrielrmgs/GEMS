@@ -25,7 +25,7 @@
             <div class="dropdown">
               <button class="dropbtn nav-link">{{ translations.projetos }}</button>
               <div class="dropdown-content">
-                <a href="http://mapa.gemsbiotec.com.br/BomJesus/">Dengue</a>
+                <a href="GEMS Portfolio Pisa Dengue.pdf" download="GEMS_PISA_DENGUE.pdf">Dengue</a>
                 <a href="#">Covid</a>
                 <a href="#">Leishmania</a>
               </div>

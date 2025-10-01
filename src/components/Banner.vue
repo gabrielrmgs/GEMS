@@ -17,7 +17,7 @@
           <div style="
           margin-left: 81px;
           ">
-            <img src="/src/assets/logo-gems-sem-fundo.png" width="360" height="180"/>
+            <img src="../assets/logo-gems-sem-fundo.png" width="360" height="180"/>
           </div>
           
         </div>

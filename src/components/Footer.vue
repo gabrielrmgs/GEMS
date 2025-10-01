@@ -70,10 +70,10 @@
           <h3>Parceiros</h3>
           <div class="parceiros">
             <a href="https://www.ulaval.ca/" target="_blank" class="parceiros-item">
-              <img src="\src\assets\University-of-Laval-logo-removebg-preview.png" width="120" height="90"/>
+              <img src="../assets/University-of-Laval-logo-removebg-preview.png" width="120" height="90"/>
             </a>
             <a href="https://novosite.ciaten.org.br/" target="_blank" class="parceiros-item">
-              <img src="\src\assets\CIATEN-LOGO-VERTICAL.png" width="120" height="120"/>
+              <img src="../assets/CIATEN-LOGO-VERTICAL.png" width="120" height="120"/>
             </a>
           </div>
         </div>
