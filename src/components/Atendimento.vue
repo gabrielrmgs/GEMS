@@ -17,14 +17,14 @@
               <div class="info-icon">📧</div>
               <div>
                 <strong>Email</strong>
-                <p>contato@empresa.com</p>
+                <p>contato@gemsbiotec.com.br</p>
               </div>
             </div>
             <div class="info-item">
               <div class="info-icon">📞</div>
               <div>
                 <strong>Telefone</strong>
-                <p>(11) 9999-9999</p>
+                <p>(86) 99999-0004</p>
               </div>
             </div>
             <div class="info-item">
