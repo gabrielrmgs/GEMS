@@ -174,14 +174,9 @@ import { useRoute } from 'vue-router';
 
 
 const currentLanguage = inject('currentLanguage', ref('pt'))
-const showArticles = inject('showArticles', () => { })
 
 const route = useRoute();
 
-const goBack = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' })
-    showArticles()
-}
 
 const shareArticle = () => {
     if (navigator.share) {

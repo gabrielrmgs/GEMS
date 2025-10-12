@@ -104,12 +104,8 @@
 import { computed, inject, ref } from 'vue'
 
 const currentLanguage = inject('currentLanguage', ref('pt'))
-const showHome = inject('showHome', () => { })
 const activeFilter = ref('all')
 
-const goHome = () => {
-    showHome()
-}
 
 const setFilter = (categoryId: string) => {
     activeFilter.value = categoryId

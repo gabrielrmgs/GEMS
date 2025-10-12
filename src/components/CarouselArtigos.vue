@@ -53,7 +53,7 @@
         </button>
 
         <div class="carousel-indicators">
-          <button v-for="(article, index) in articles" :key="index" class="indicator"
+          <button v-for="(_article, index) in articles" :key="index" class="indicator"
             :class="{ active: currentSlide === index }" @click="goToSlide(index)"></button>
         </div>
       </div>
@@ -65,7 +65,6 @@
 import { ref, computed, inject, onMounted, onUnmounted } from 'vue'
 
 const currentLanguage = inject('currentLanguage', ref('pt'))
-const showArticleDetail = inject('showArticleDetail', (id: number) => { })
 const currentSlide = ref(0)
 let autoplayInterval: number | null = null
 
@@ -145,10 +144,6 @@ const prevSlide = () => {
 
 const goToSlide = (index: number) => {
   currentSlide.value = index
-}
-
-const openArticleDetail = (articleId: number) => {
-  showArticleDetail(articleId)
 }
 
 const startAutoplay = () => {
