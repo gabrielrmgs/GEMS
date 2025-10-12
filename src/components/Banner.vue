@@ -81,7 +81,7 @@ const translations = computed(() => {
 <style scoped>
 .banner {
   background: linear-gradient(45deg, #E5EEF3FF 0%, #A4BCD4 100%);
-  padding: 60px 0;
+  padding: 15px 0;
   position: relative;
   overflow: hidden;
 }

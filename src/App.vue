@@ -1,6 +1,7 @@
 <template>
   <div id="app">
     <Header @language-change="changeLanguage" />
+    <Banner/>
     <router-view />
     <Footer />
     <BackToTop />
@@ -14,6 +15,7 @@ import { ref, provide } from 'vue'
 import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import BackToTop from './components/BackToTop.vue'
+import Banner from './components/Banner.vue'
 
 const currentLanguage = ref('pt')
 

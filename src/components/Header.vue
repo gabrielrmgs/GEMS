@@ -15,12 +15,8 @@
               <button class="dropbtn nav-link">{{ translations.certificates }}</button>
               <div class="dropdown-content">
                 <a href="#">Política interna (PDF)</a>
-                <a href="#">Alvará de funcionamento (PDF)</a>
-                <a href="#">Corpo de bombeiros(PDF)</a>
-                <a href="#">Certificado de Boas Práticas (PDF)</a>
               </div>
             </div>
-            <router-link to="/GEMS/cadastro" class="nav-link">{{ translations.register }}</router-link>
             <router-link to="/GEMS/atendimento" class="nav-link" >{{ translations.atendimento }}</router-link>
             <div class="dropdown">
               <button class="dropbtn nav-link">{{ translations.projetos }}</button>
@@ -33,9 +29,9 @@
             <div class="dropdown">
               <button class="dropbtn nav-link">{{ translations.noticias }}</button>
               <div class="dropdown-content">
+                <router-link to="/GEMS/artigos">{{ translations.artigos }}</router-link>
                 <router-link to="/GEMS/videos">{{ translations.videos }}</router-link>
                 <a href="#">{{ translations.conferencias }}</a>
-                <router-link to="/GEMS/artigos">{{ translations.artigos }}</router-link>
               </div>
             </div>
           </div>

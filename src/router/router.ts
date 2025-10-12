@@ -5,6 +5,7 @@ import Cadastro from '../components/Cadastro.vue'
 import Equipe from '../components/Equipe.vue'
 import VideosPagina from '../components/VideosPagina.vue'
 import ArtigosPagina from '../components/ArtigosPagina.vue'
+import ArtigoDetalhe from '../components/ArtigoDetalhe.vue'
 
 // 1. Defina suas rotas com o tipo RouteRecordRaw
 const routes: Array<RouteRecordRaw> = [
@@ -42,13 +43,25 @@ const routes: Array<RouteRecordRaw> = [
     path: '/GEMS/artigos',
     name: 'Artigos',
     component: ArtigosPagina
+  },
+  {
+    path: '/GEMS/artigos/detalhe/:id',
+    name: 'ArtigoDetalhe',
+    component: ArtigoDetalhe
   }
 ]
 
 // 2. Crie a instância do router
 const router = createRouter({
   history: createWebHistory(),
-  routes
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition;
+    } else {
+      return { top: 0 };
+    }
+  }
 })
 
 // 3. Exporte a instância para ser usada no arquivo principal (main.ts)

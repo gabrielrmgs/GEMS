@@ -43,7 +43,7 @@ onUnmounted(() => {
   right: 30px;
   width: 50px;
   height: 50px;
-  background: #0774B3;
+  background: #73c4f7;
   color: white;
   border: none;
   border-radius: 50%;

@@ -1,7 +1,7 @@
 <template>
     <section class="articles-section">
         <div class="container">
-            <div class="articles-header">
+            <div id="sectionArtigos" class="articles-header">
                 <div class="icon-wrapper">
                     <svg viewBox="0 0 24 24" class="articles-icon">
                         <path fill="currentColor"
@@ -23,76 +23,78 @@
 
             <div class="articles-grid">
                 <article v-for="article in filteredArticles" :key="article.id" class="article-card">
-                    <div class="article-header">
-                        <div class="journal-info">
-                            <span class="journal-name">{{ article.journal }}</span>
-                            <span class="impact-factor">IF: {{ article.impactFactor }}</span>
-                        </div>
-                        <div class="article-year">{{ article.year }}</div>
-                    </div>
-
-                    <h3 class="article-title">{{ article.title }}</h3>
-
-                    <div class="authors">
-                        <span class="authors-label">{{ translations.authors }}:</span>
-                        <span class="authors-list">{{ article.authors }}</span>
-                    </div>
-
-                    <div class="article-abstract">
-                        <p>{{ article.abstract }}</p>
-                    </div>
-
-                    <div class="article-tags">
-                        <span v-for="tag in article.tags" :key="tag" class="tag">
-                            {{ tag }}
-                        </span>
-                    </div>
-
-                    <div class="article-footer">
-                        <div class="article-stats">
-                            <div class="stat-item">
-                                <svg viewBox="0 0 24 24" class="stat-icon">
-                                    <path fill="currentColor"
-                                        d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z" />
-                                </svg>
-                                <span>{{ article.citations }}</span>
+                    <router-link :to="{name: 'ArtigoDetalhe', params: { id: article.id} }">
+                        <div class="article-header">
+                            <div class="journal-info">
+                                <span class="journal-name">{{ article.journal }}</span>
+                                <span class="impact-factor">IF: {{ article.impactFactor }}</span>
                             </div>
-                            <div class="stat-item">
-                                <svg viewBox="0 0 24 24" class="stat-icon">
-                                    <path fill="currentColor"
-                                        d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
-                                </svg>
-                                <span>Q{{ article.quartile }}</span>
-                            </div>
+                            <div class="article-year">{{ article.year }}</div>
                         </div>
 
-                        <div class="article-actions">
-                            <a :href="article.doi" target="_blank" class="action-btn doi-btn">
-                                <svg viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
-                                </svg>
-                                DOI
-                            </a>
-                            <a :href="article.pdfUrl" target="_blank" class="action-btn pdf-btn">
-                                <svg viewBox="0 0 24 24">
-                                    <path fill="currentColor"
-                                        d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
-                                </svg>
-                                PDF
-                            </a>
+                        <h3 class="article-title">{{ article.title }}</h3>
+
+                        <div class="authors">
+                            <span class="authors-label">{{ translations.authors }}:</span>
+                            <span class="authors-list">{{ article.authors }}</span>
                         </div>
-                    </div>
+
+                        <div class="article-abstract">
+                            <p>{{ article.abstract }}</p>
+                        </div>
+
+                        <div class="article-tags">
+                            <span v-for="tag in article.tags" :key="tag" class="tag">
+                                {{ tag }}
+                            </span>
+                        </div>
+
+                        <div class="article-footer">
+                            <div class="article-stats">
+                                <div class="stat-item">
+                                    <svg viewBox="0 0 24 24" class="stat-icon">
+                                        <path fill="currentColor"
+                                            d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z" />
+                                    </svg>
+                                    <span>{{ article.citations }}</span>
+                                </div>
+                                <div class="stat-item">
+                                    <svg viewBox="0 0 24 24" class="stat-icon">
+                                        <path fill="currentColor"
+                                            d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+                                    </svg>
+                                    <span>Q{{ article.quartile }}</span>
+                                </div>
+                            </div>
+
+                            <!-- <div class="article-actions">
+                                <a :href="article.doi" target="_blank" class="action-btn doi-btn">
+                                    <svg viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z" />
+                                    </svg>
+                                    DOI
+                                </a>
+                                <a :href="article.pdfUrl" target="_blank" class="action-btn pdf-btn">
+                                    <svg viewBox="0 0 24 24">
+                                        <path fill="currentColor"
+                                            d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z" />
+                                    </svg>
+                                    PDF
+                                </a>
+                            </div> -->
+                        </div>
+                    </router-link>
                 </article>
             </div>
 
             <div class="back-to-home">
-                <button @click="goHome" class="btn-back">
+                <router-link to="/GEMS/" class="btn-back">
                     <svg viewBox="0 0 24 24">
                         <path fill="currentColor" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
                     </svg>
                     {{ translations.backToHome }}
-                </button>
+                </router-link>
             </div>
         </div>
     </section>
@@ -194,6 +196,21 @@ const articles = ref([
         abstract: 'Kala-azar is a protracted disease caused by the protozoan Leishmania infantum (zoonotic) or L. donovani (anthroponotic), transmitted by sandflies. Patients present with fever, anemia, and hepatosplenomegaly, potentially progressing to hemorrhaging, secondary infections, and death. Its pathogenesis is linked to an exaggerated cytokine response. We studied 72 hospitalized patients, analyzing clinical data and outcomes in relation to L. infantum DNA loads in blood and bone marrow, and plasma concentrations of IL-1β, IL-6, IL-8, IL-10, IL-12, TNF-α, and TGF-β. Cytokine levels were found to be elevated. L. infantum kDNA loads in blood and bone marrow were strongly correlated and increased with disease duration. Higher parasite loads were observed in men, adults, and HIV-infected patients, and they were significantly associated with mortality. IL-6 was independently linked to sepsis. In multivariate analysis, IL-12 was the only cytokine inversely associated with blood parasite load. Parasite load, but not cytokine levels, correlated with disease severity, suggesting additional mechanisms drive progression. IL-12 appears to limit parasitemia, indicating a weak, persistent adaptive immune response that is ultimately overwhelmed by a progressive, inefficient, and inflammatory innate response.',
         doi: 'https://doi.org/10.3390/pathogens14070615',
         pdfUrl: 'https://www.mdpi.com/2076-0817/14/7/615/pdf?version=1750417460'
+    },
+    {
+        id: 3,
+        title: 'The spleen is the graveyard of CD4+ cells in patients with immunological failure of visceral leishmaniasis and AIDS',
+        authors: 'REINALDO, LUIS GUSTAVO CAVALCANTE ; ARAÚJO JÚNIOR, RAIMUNDO JOSÉ CUNHA ; DINIZ, THIAGO MELO ; MOURA, RAFAEL DE DEUS ; MENESES FILHO, ANTÔNIO JOSÉ ; FURTADO, CAIO VICTOR VERÇOSA DE MACEDO ; DOS SANTOS, WASHINGTON LUIS CONRADO ; COSTA, DORCAS LAMOUNIER ; EULÁLIO, KELSEN DANTAS ; FERREIRA, GABRIEL R. ; COSTA, CARLOS HENRIQUE NERY',
+        journal: 'Parasites Vectors',
+        year: 2024,
+        impactFactor: '3.5',
+        quartile: 1,
+        citations: 3,
+        category: 'leishmaniasis',
+        tags: ['Leishmanioses', 'Visceral leishmaniasis', 'Kala-azar', 'Leishmania infantum'],
+        abstract: 'Visceral leishmaniasis (VL), or kala-azar, is a common comorbidity in patients with AIDS in endemic areas. Many patients continue to experiences relapses of VL despite virological control, but with immunological failure. These patients remain chronically symptomatic with hypersplenism, for example with anemia, leukopenia, and thrombocytopenia, and are at risk of severe co-infection due to low CD4+ count. Therefore, in this study, splenectomized patients with VL and HIV infection were investigated to understand why the CD4+ count fails to recover in these patients, evaluating the importance of spleen mass for hypersplenism and immunological failure.',
+        doi: 'https://parasitesandvectors.biomedcentral.com/articles/10.1186/s13071-024-06151-6',
+        pdfUrl: 'https://parasitesandvectors.biomedcentral.com/counter/pdf/10.1186/s13071-024-06151-6.pdf'
     }
 ])
 
