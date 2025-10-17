@@ -6,6 +6,8 @@ import Equipe from '../components/Equipe.vue'
 import VideosPagina from '../components/VideosPagina.vue'
 import ArtigosPagina from '../components/ArtigosPagina.vue'
 import ArtigoDetalhe from '../components/ArtigoDetalhe.vue'
+import Noticias from '../components/Noticias.vue'
+import NoticiaDetalhe from '../components/NoticiaDetalhe.vue'
 
 // 1. Defina suas rotas com o tipo RouteRecordRaw
 const routes: Array<RouteRecordRaw> = [
@@ -48,6 +50,16 @@ const routes: Array<RouteRecordRaw> = [
     path: '/GEMS/artigos/detalhe/:id',
     name: 'ArtigoDetalhe',
     component: ArtigoDetalhe
+  },
+  {
+    path: '/GEMS/noticias',
+    name: 'Noticias',
+    component: Noticias
+  },
+  {
+    path: '/GEMS/noticias/detalhe/:id',
+    name: 'NoticiaDetalhe',
+    component: NoticiaDetalhe
   }
 ]
 

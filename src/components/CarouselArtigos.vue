@@ -6,36 +6,51 @@
       <div class="carousel-container">
         <div class="carousel-wrapper">
           <div class="carousel-track" :style="{ transform: `translateX(-${currentSlide * 100}%)` }">
-            <div v-for="(article, index) in articles" :key="index" class="carousel-slide">
-              <router-link :to="{ name: 'ArtigoDetalhe', params: { id: article.id } }">
+            <div v-for="(item, index) in carrouselItens" :key="index" class="carousel-slide">
+              <router-link v-if="item.type === 'article'" :to="{ name: 'ArtigoDetalhe', params: { id: item.id } }">
                 <div class="article-container">
-                  <img :src="article.thumbnail" :alt="article.title" />
+                  <img :src="item.thumbnail" :alt="item.title" />
                   <div class="article-overlay">
                     <div class="article-header">
-                      <span class="journal-name">{{ article.journal }}</span>
-                      <span class="article-year">{{ article.year }}</span>
+                      <span class="journal-name">{{ item.data.journal }}</span>
+                      <span class="article-year">{{ item.data.year }}</span>
                     </div>
-                    <h3>{{ article.title }}</h3>
-                    <p class="article-abstract">{{ article.abstract }}</p>
+                    <h3>{{ item.title }}</h3>
+                    <p class="article-abstract">{{ item.excerpt }}</p>
                     <div class="article-metrics">
                       <div class="metric">
                         <svg viewBox="0 0 24 24" class="metric-icon">
                           <path fill="currentColor"
                             d="M16.5 3c-1.74 0-3.41.81-4.5 2.09C10.91 3.81 9.24 3 7.5 3 4.42 3 2 5.42 2 8.5c0 3.78 3.4 6.86 8.55 11.54L12 21.35l1.45-1.32C18.6 15.36 22 12.28 22 8.5 22 5.42 19.58 3 16.5 3z" />
                         </svg>
-                        <span>{{ article.citations }}</span>
+                        <span>{{ item.data.citations }}</span>
                       </div>
                       <div class="metric">
                         <svg viewBox="0 0 24 24" class="metric-icon">
                           <path fill="currentColor"
                             d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                         </svg>
-                        <span>IF: {{ article.impactFactor }}</span>
+                        <span>IF: {{ item.data.impactFactor }}</span>
                       </div>
                     </div>
                   </div>
                 </div>
               </router-link>
+              <router-link v-else-if="item.type === 'noticia'"
+                :to="{ name: 'NoticiaDetalhe', params: { id: item.id } }">
+                <div class="article-container">
+                  <img :src="item.thumbnail" :alt="item.title" />
+                  <div class="article-overlay">
+                    <div class="article-header">
+                      <span class="journal-name">{{ item.data.category }}</span>
+                      <span class="article-year">{{ item.data.publishedDate }}</span>
+                    </div>
+                    <h3>{{ item.title }}</h3>
+                    <p class="article-abstract">{{ item.excerpt }}</p>
+                  </div>
+                </div>
+              </router-link>
+
             </div>
           </div>
         </div>
@@ -53,7 +68,7 @@
         </button>
 
         <div class="carousel-indicators">
-          <button v-for="(_article, index) in articles" :key="index" class="indicator"
+          <button v-for="(_item, index) in carrouselItens" :key="index" class="indicator"
             :class="{ active: currentSlide === index }" @click="goToSlide(index)"></button>
         </div>
       </div>
@@ -63,6 +78,53 @@
 
 <script setup lang="ts">
 import { ref, computed, inject, onMounted, onUnmounted } from 'vue'
+import seminarioImg from '../assets/publicacoes/imagem1.jpg'
+
+interface Article {
+  id: number;
+  title: string;
+  authors: string;
+  journal: string;
+  year: number;
+  impactFactor: string;
+  quartile: number;
+  citations: number;
+  category: string;
+  tags: string[];
+  abstract: string;
+  doi: string;
+  pdfUrl: string;
+  thumbnail: string;
+}
+
+// Defina a estrutura de uma Notícia
+interface Noticia {
+  id: number;
+  title: string;
+  excerpt: string;
+  publishedDate: string;
+  author: string;
+  category: string;
+  featuredImage: string; // Mudei para ser mais consistente com a interface abaixo
+}
+
+type CarouselItem =
+  | {
+    type: 'article';
+    id: number;
+    title: string;
+    thumbnail: string;
+    excerpt: string;
+    data: Article; // O objeto original completo
+  }
+  | {
+    type: 'noticia';
+    id: number;
+    title: string;
+    thumbnail: string;
+    excerpt: string;
+    data: Noticia; // O objeto original completo
+  };
 
 const currentLanguage = inject('currentLanguage', ref('pt'))
 const currentSlide = ref(0)
@@ -71,19 +133,19 @@ let autoplayInterval: number | null = null
 const translations = computed(() => {
   const texts = {
     pt: {
-      title: 'Artigos Publicados'
+      title: 'Artigos e Notícias Publicadas'
     },
     en: {
-      title: 'Published Articles'
+      title: 'Published Articles and News'
     },
     es: {
-      title: 'Artículos Publicados'
+      title: 'Artículos y noticias publicados'
     }
   }
   return texts[currentLanguage.value as keyof typeof texts] || texts.pt
 })
 
-const articles = ref([
+const articles = ref<Article[]>([
   {
     id: 1,
     title: 'Novel insights into the Leishmania infantum transcriptome diversity of protein-coding and non-coding sequences in both stages of parasite development using nanopore direct RNA sequencing',
@@ -134,12 +196,53 @@ const articles = ref([
   }
 ])
 
+const noticias = ref<Noticia[]>(
+  [
+    {
+      id: 1,
+      title: 'Apresentação de Gabriel Ferreira na 9º Jornada Científica Brasil-França 2025 reforça a integração entre pesquisa e políticas públicas de saúde',
+      excerpt: 'A Temporada França-Brasil 2025 celebra dois séculos de amizade e cooperação entre as duas nações. Durante o seminário, o Dr. Gabriel Ferreira apresentou trabalho sobre nova modalidade de diagnóstico de HIV.',
+      featuredImage: seminarioImg,
+      publishedDate: '08/10/2025',
+      author: 'Redação',
+      category: 'Pesquisa Internacional'
+    }
+  ]
+)
+
+const carrouselItens = computed(
+  () => {
+    const mappedArticles = articles.value.map((article): CarouselItem => (
+      {
+        id: article.id,
+        title: article.title,
+        thumbnail: article.thumbnail,
+        excerpt: article.abstract, // Usando abstract como resumo
+        type: 'article', // Identificador do tipo
+        data: article
+      }
+    ))
+
+    const mappedNoticias = noticias.value.map((noticia): CarouselItem => (
+      {
+        id: noticia.id,
+        title: noticia.title,
+        thumbnail: noticia.featuredImage,
+        excerpt: noticia.excerpt,
+        type: 'noticia', // Identificador do tipo
+        data: noticia
+      }
+    ))
+    return [...mappedArticles, ...mappedNoticias]
+  }
+)
+
 const nextSlide = () => {
-  currentSlide.value = (currentSlide.value + 1) % articles.value.length
+  currentSlide.value = (currentSlide.value + 1) % carrouselItens.value.length
 }
 
 const prevSlide = () => {
-  currentSlide.value = currentSlide.value === 0 ? articles.value.length - 1 : currentSlide.value - 1
+  currentSlide.value = currentSlide.value === 0 ? carrouselItens.value.length - 1 : currentSlide.value - 1
 }
 
 const goToSlide = (index: number) => {

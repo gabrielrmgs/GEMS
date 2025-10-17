@@ -30,8 +30,8 @@
               <button class="dropbtn nav-link">{{ translations.noticias }}</button>
               <div class="dropdown-content">
                 <router-link to="/GEMS/artigos">{{ translations.artigos }}</router-link>
+                <router-link to="/GEMS/noticias">{{ translations.conferencias }}</router-link>
                 <router-link to="/GEMS/videos">{{ translations.videos }}</router-link>
-                <a href="#">{{ translations.conferencias }}</a>
               </div>
             </div>
           </div>
